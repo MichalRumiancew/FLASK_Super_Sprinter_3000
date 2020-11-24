@@ -5,26 +5,37 @@
     <title>THIS IS MA AWESOME WEBPAGE</title>
 </head>
 <body>
-<h1>Super Sprinter 3000</h1>
-<table>
-    <thead>
-    <tr>
-        {% for header in table_headers %}
-            <th>
-                {{ header }}
-            </th>
-        {% endfor %}
-    </tr>
-    </thead>
+    <h1>Super Sprinter 3000</h1>
+    <a
+    <table>
+        <thead>
+            <tr>
+                {% for header in table_headers %}
+                    <th>
+                        {{ header }}
+                    </th>
+                {% endfor %}
+            </tr>
+        </thead>
     <tbody>
-    {% for user_story in user_stories %}
-    <tr>
-        {% for key in user_story_keys %}
-                {{ user_story[key] }}
-        {% endfor %}
-    </tr>
-
+        {% for user_story in user_stories %}
+            <tr>
+                {% for key in user_story_keys %}
+                    <td>
+                        {%  if key == "title" %}
+                           <a href="{{url_for("user_story") }}">{{user_story[key] }}</a>
+                        {% elif key == "business" %}
+                            {{ user_story[key]  }} points
+                        {% elif key == "estimation" %}
+                            {{ user_story[key] }}h
+                        {% else %}
+                            {{ user_story[key] }}
+                        {% endif %}
+                    </td>
+                {%  endfor %}
+            </tr>
+        <% endfor %>
     </tbody>
-</table>
+    </table>
 </body>
 </html>
